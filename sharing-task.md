@@ -4,6 +4,8 @@
 Students will work together to write unit tests for a shared codebase, verify method behavior, and provide feedback to their peers. This activity emphasizes collaboration, critical thinking, and knowledge sharing within the learning community.
 
 ---
+ 
+
 
 ## 🧱 Activity Overview
 
@@ -18,7 +20,7 @@ Include minimal or no existing tests, encouraging students to create them from s
 function calculateDiscount(price, discountRate) {
     if (typeof price !== 'number' || typeof discountRate !== 'number') return null;
     if (discountRate < 0 || discountRate > 1) return null;
-    // TODO: Implement logic
+    if (discountRate >= 0 && discountRate < 1) return price*(1-discountRate);
     return null;
 }
 
@@ -33,8 +35,8 @@ function sortInventory(inventory, key) {
     // TODO: Implement sorting logic
     return [];
 }
-```
 
+```
 ## 👥 Form Groups
 
 Divide students into small groups of 3–5. Each group will be responsible for writing unit tests for one or more methods in the shared codebase.
@@ -68,14 +70,17 @@ npm test
 ## 📄 Sample Test Code (Students Will Write)
 
 ```js
+// positive case
 test("applies a valid discount rate", () => {
     expect(calculateDiscount(100, 0.1)).toBe(90);
 });
 
+//negative case
 test("handles an invalid discount rate gracefully", () => {
     expect(calculateDiscount(100, -0.1)).toBe(null);
 });
 
+//edge case
 test("handles edge case with price of 0", () => {
     expect(calculateDiscount(0, 0.2)).toBe(0);
 });
